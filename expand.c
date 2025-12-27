@@ -27,7 +27,7 @@
 LOCAL VOID	addg();
 
 
-INT	expand(as,rflg)
+INT expand(as,rflg) INT rflg;
 	STRING		as;
 {
 	INT		count, dirf;
@@ -138,7 +138,7 @@ INT	expand(as,rflg)
 	return(count);
 }
 
-gmatch(s, p)
+INT gmatch(s, p)
 	REG STRING	s, p;
 {
 	REG INT		scc;
@@ -220,14 +220,14 @@ LOCAL VOID	addg(as1,as2,as3)
 	makearg(endstak(s2));
 }
 
-makearg(args)
+VOID makearg(args)
 	REG STRING	args;
 {
 	((ARGPTR) args)->argnxt=gchain;
 	gchain=(ARGPTR) args;
 }
 
-chgquot(str, flg)
+VOID chgquot(str, flg)
 REG STRING	str;
 REG INT		flg;
 {
@@ -235,7 +235,7 @@ REG INT		flg;
 
 	FOR i=0;i<DIRSIZ;i++
 	DO
-		SWITCH str[i]  IN
+		SWITCH (unsigned char)str[i]  IN
 		case '\0':
 			return;
 		case '*':

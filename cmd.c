@@ -115,7 +115,7 @@ TREPTR	cmd(sym,flg)
  *	list || term
  */
 
-LOCAL TREPTR	list(flg)
+LOCAL TREPTR list(flg) INT flg;
 {
 	REG TREPTR	r;
 	REG INT		b;
@@ -133,7 +133,7 @@ LOCAL TREPTR	list(flg)
  *	item |^ term
  */
 
-LOCAL TREPTR	term(flg)
+LOCAL TREPTR term(flg) INT flg;
 {
 	REG TREPTR	t;
 
@@ -366,7 +366,7 @@ LOCAL VOID	chkword()
 	FI
 }
 
-LOCAL VOID	chksym(sym)
+LOCAL VOID chksym(sym) INT sym;
 {
 	REG INT		x = sym&wdval;
 	IF ((x&SYMFLG) ? x : sym) != wdval
@@ -374,7 +374,7 @@ LOCAL VOID	chksym(sym)
 	FI
 }
 
-LOCAL VOID	prsym(sym)
+LOCAL VOID prsym(sym) INT sym;
 {
 	IF sym&SYMFLG
 	THEN	REG SYSPTR	sp=reserved;

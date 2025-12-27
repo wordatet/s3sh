@@ -1,7 +1,7 @@
 #include        "defs.h"
 extern int      exitval;
 
-builtin(xbuiltin, argn, com)
+VOID builtin(xbuiltin, argn, com) INT xbuiltin;
 
 /*
 	builtin commands are those that Bourne did not intend
@@ -18,7 +18,7 @@ register char   *com[];
                         break;
         }
 }
-bfailed(s1, s2, s3) 
+VOID bfailed(s1, s2, s3) 
 	/*	fake diagnostics to continue to look like original
 		test(1) diagnostics
 	*/

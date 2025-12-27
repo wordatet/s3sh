@@ -82,6 +82,7 @@ struct blk {
 	BLKPTR	word;
 };
 
+#undef BUFSIZ
 #define	BUFSIZ	64
 struct fileblk {
 	UFD	fdes;

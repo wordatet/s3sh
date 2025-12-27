@@ -13,15 +13,15 @@
 
 LOCAL INT	parent;
 
-SYSTAB		commands;
-SYSTAB		xcmds;
+extern SYSTAB commands;
+extern SYSTAB xcmds;
 
 
 
 /* ========	command execution	========*/
 
 
-execute(argt, execflg, pf1, pf2)
+INT execute(argt, execflg, pf1, pf2) INT execflg;
 	TREPTR		argt;
 	INT		*pf1, *pf2;
 
@@ -84,7 +84,7 @@ execute(argt, execflg, pf1, pf2)
 
 				case SYSTIMES:
 					{
-					L_INT	t[4]; times(t);
+					L_INT	t[4]; times((struct tms *)t);
 					prt(t[2]); blank(); prt(t[3]); newline();
 					}
 					break;
@@ -325,7 +325,7 @@ execute(argt, execflg, pf1, pf2)
 				/* except for those `lost' by trap   */
 				oldsigs();
 				IF treeflgs&FINT
-				THEN	signal(INTR,1); signal(QUIT,1);
+				THEN	signal(INTR,SIG_IGN); signal(QUIT,SIG_IGN);
 				FI
 
 				/* pipe in or out */
@@ -478,14 +478,14 @@ execute(argt, execflg, pf1, pf2)
 }
 
 
-execexp(s,f)
+INT execexp(s,f)
 	STRING		s;
 	UFD		f;
 {
 	FILEBLK		fb;
 	push(&fb);
 	IF s
-	THEN	estabf(s); fb.feval=(STRING *)(f);
+	THEN	estabf(s); fb.feval=(STRING *)(intptr_t)(f);
 	ELIF f>=0
 	THEN	initf(f);
 	FI

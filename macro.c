@@ -31,7 +31,7 @@ LOCAL VOID	copyto(endch)
 	IF c!=endch THEN error(badsub) FI
 }
 
-LOCAL	skipto(endch)
+LOCAL INT skipto(endch)
 	REG CHAR	endch;
 {
 	/* skip chars up to } */
@@ -86,7 +86,7 @@ retry:
 				THEN	dolg=1; c='1';
 				FI
 				c -= '0';
-				v=((c==0) ? cmdadr : (c<=dolc) ? dolv[c] : (STRING)(dolg=0));
+				v=((c==0) ? cmdadr : (c<=dolc) ? dolv[c] : (STRING)(intptr_t)(dolg=0));
 			ELIF c=='$'
 			THEN	v=pidadr;
 			ELIF c=='!'
@@ -217,7 +217,7 @@ LOCAL VOID	comsubst()
 
 #define CPYSIZ	512
 
-subst(in,ot)
+VOID subst(in,ot)
 	INT		in, ot;
 {
 	REG CHAR	c;
@@ -236,9 +236,9 @@ subst(in,ot)
 	pop();
 }
 
-LOCAL VOID	flush(ot)
+LOCAL VOID flush(ot) INT ot;
 {
-	write(ot,stakbot,staktop-stakbot);
-	IF flags&execpr THEN write(output,stakbot,staktop-stakbot) FI
+	if (write(ot,stakbot,staktop-stakbot) == -1) { /* ignore */ }
+	IF flags&execpr THEN if (write(output,stakbot,staktop-stakbot) == -1) { /* ignore */ } FI
 	staktop=stakbot;
 }

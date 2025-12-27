@@ -49,6 +49,7 @@
 #define STRIP	0177
 #define QUOTE	0200
 
+#undef EOF
 #define EOF	0
 #define NL	'\n'
 #define SP	' '

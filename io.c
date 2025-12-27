@@ -13,7 +13,7 @@
 
 /* ========	input output and file copying ======== */
 
-initf(fd)
+VOID initf(fd)
 	UFD		fd;
 {
 	REG S3_FILE	f=standin;
@@ -23,7 +23,7 @@ initf(fd)
 	f->feof=FALSE;
 }
 
-estabf(s)
+INT estabf(s)
 	REG STRING	s;
 {
 	REG S3_FILE	f;
@@ -34,7 +34,7 @@ estabf(s)
 	return(f->feof=(s==0));
 }
 
-push(af)
+VOID push(af)
 	S3_FILE		af;
 {
 	REG S3_FILE	f;
@@ -44,7 +44,7 @@ push(af)
 	standin=f;
 }
 
-pop()
+INT pop()
 {
 	REG S3_FILE	f;
 
@@ -56,7 +56,7 @@ pop()
 	FI
 }
 
-chkpipe(pv)
+VOID chkpipe(pv)
 	INT		*pv;
 {
 	IF pipe(pv)<0 ORF pv[INPIPE]<0 ORF pv[OTPIPE]<0
@@ -64,7 +64,7 @@ chkpipe(pv)
 	FI
 }
 
-chkopen(idf)
+INT chkopen(idf)
 	STRING		idf;
 {
 	REG INT		rc;
@@ -75,7 +75,7 @@ chkopen(idf)
 	FI
 }
 
-sh_rename(f1,f2)
+VOID sh_rename(f1,f2)
 	REG INT		f1, f2;
 {
 #ifdef RES	/*	research has different sys calls from TS	*/
@@ -97,7 +97,7 @@ sh_rename(f1,f2)
 #endif
 }
 
-create(s)
+INT create(s)
 	STRING		s;
 {
 	REG INT		rc;
@@ -108,7 +108,7 @@ create(s)
 	FI
 }
 
-tmpfil()
+INT tmpfil()
 {
 	itos(serial++); movstr(numbuf,sh_tmpnam);
 	return(create(tmpout));
@@ -117,7 +117,7 @@ tmpfil()
 /* set by trim */
 BOOL		nosubst;
 
-copy(ioparg)
+VOID copy(ioparg)
 	IOPTR		ioparg;
 {
 	CHAR		c, *ends;
@@ -152,7 +152,7 @@ copy(ioparg)
 			*clinep=0;
 			IF eof ORF eq(cline,ends) THEN break FI
 			*clinep++=NL;
-			write(fd,cline,clinep-cline);
+			if (write(fd,cline,clinep-cline) == -1) { /* ignore */ }
 		POOL
 		IF stripflg THEN stripflg-- FI
 		close(fd);

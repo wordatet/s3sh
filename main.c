@@ -28,7 +28,7 @@ LOCAL VOID	exfile();
 
 
 
-main(c, v, e)
+INT main(c, v, e)
 	INT		c;
 	STRING		v[];
 	STRING		e[];
@@ -201,7 +201,7 @@ BOOL		prof;
 	POOL
 }
 
-chkpr(eor)
+VOID chkpr(eor)
 char eor;
 {
 	IF (flags&prompt) ANDF standin->fstak==0 ANDF eor==NL
@@ -209,13 +209,13 @@ char eor;
 	FI
 }
 
-settmp()
+VOID settmp()
 {
 	itos(getpid()); serial=0;
 	sh_tmpnam=movstr(numbuf,&tmpout[TMPNAM]);
 }
 
-Ldup(fa, fb)
+VOID Ldup(fa, fb)
 	REG INT		fa, fb;
 {
 #ifdef RES

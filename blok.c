@@ -31,16 +31,13 @@ ADDRESS	sh_alloc(nbytes)
 	POS		nbytes;
 {
 	REG POS		rbytes = round(nbytes+BYTESPERWORD,BYTESPERWORD);
-    fprintf(stderr, "[Alloc] alloc(%ld) -> rbytes=%ld\n", (long)nbytes, (long)rbytes);
 
 	LOOP	INT		c=0;
 		REG BLKPTR	p = blokp;
 		REG BLKPTR	q;
 		REP	
-            fprintf(stderr, "  [Alloc] check p=%p, word=%p, busy=%d\n", p, p->word, busy(p));
             IF !busy(p)
 			THEN	WHILE !busy(q = p->word) DO 
-                        fprintf(stderr, "    [Alloc] merge p=%p with q=%p\n", p, q);
                         p->word = q->word;
                     OD
 				IF ADR(q)-ADR(p) >= rbytes
@@ -49,13 +46,11 @@ ADDRESS	sh_alloc(nbytes)
 					THEN	blokp->word = p->word;
 					FI
 					p->word=BLK(Rcheat(blokp)|BUSY);
-                    fprintf(stderr, "  [Alloc] success: return %p, new blokp=%p\n", ADR(p+1), blokp);
 					return(ADR(p+1));
 				FI
 			FI
 			q = p; p = BLK(Rcheat(p->word)&~BUSY);
 		PER	p>q ORF (c++)==0 DONE
-        fprintf(stderr, "  [Alloc] failed to find space, calling addblok\n");
 		addblok(rbytes);
 	POOL
 }
@@ -63,7 +58,6 @@ ADDRESS	sh_alloc(nbytes)
 VOID	addblok(reqd)
 	POS		reqd;
 {
-    fprintf(stderr, "[Blok] addblok: reqd=%ld, bloktop=%p, staktop=%p\n", (long)reqd, bloktop, staktop);
 	IF stakbas!=staktop
 	THEN	REG STKPTR	rndstak;
 		REG BLKPTR	blokstak;

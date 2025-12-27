@@ -117,7 +117,7 @@ VOID	setargs(argi)
 	assnum(&dolladr,dolc=argn-1);
 }
 
-freeargs(blk)
+DOLPTR freeargs(blk)
 	DOLPTR		blk;
 {
 	REG STRING	*argp;
@@ -132,10 +132,10 @@ freeargs(blk)
 			free(argblk);
 		FI
 	FI
-	return((int) argr);
+	return(argr);
 }
 
-LOCAL STRING *	copyargs(from, n)
+LOCAL STRING * copyargs(from, n) INT n;
 	STRING		from[];
 {
 	REG STRING *	np=(STRING *) alloc(sizeof(STRING*)*n+3*BYTESPERWORD);
@@ -152,7 +152,7 @@ LOCAL STRING *	copyargs(from, n)
 	return(pp);
 }
 
-clearup()
+VOID clearup()
 {
 	/* force `for' $* lists to go away */
 	WHILE argfor=(DOLPTR) freeargs(argfor) DONE

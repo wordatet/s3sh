@@ -50,7 +50,7 @@ LOCAL VOID expand_stak(needed)
 STKPTR	getstak(asize)
 	INT		asize;
 {	/* allocate requested stack */
-	REG POS		size = round(asize, BYTESPERWORD);
+	REG POS		size = round((intptr_t)asize, BYTESPERWORD);
     IF stakbot + size >= brkend
     THEN expand_stak(size)
     FI
@@ -92,7 +92,7 @@ VOID	tdystak(x)
 	rmtemp(x);
 }
 
-stakchk()
+VOID stakchk()
 {
     /* No-op: realloc handles growth, and we don't need to shrink for now */
 }

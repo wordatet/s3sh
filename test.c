@@ -19,7 +19,7 @@ LOCAL INT tio();
 LOCAL INT ftype();
 LOCAL INT fsizep();
 
-test(argn, com)
+INT test(argn, com)
 	STRING com[];
 	INT argn;
 {
@@ -36,7 +36,7 @@ test(argn, com)
         return(test_exp()?0:1);
 }
 
-STRING	nxtarg(mt)	{
+STRING nxtarg(mt) INT mt;	{
 
 	IF ap >= ac
 	THEN	IF mt
@@ -48,7 +48,7 @@ STRING	nxtarg(mt)	{
         return(av[ap++]);
 }
 
-test_exp() {
+INT test_exp() {
         INT p1;
 	STRING	p2;
 
@@ -71,7 +71,7 @@ LOCAL INT e1() {
         return(p1);
 }
 
-e2() {
+INT e2() {
         IF eq(nxtarg(0), "!")
 	THEN	return(!e3())
 	FI
@@ -79,7 +79,7 @@ e2() {
         return(e3());
 }
 
-e3() {
+INT e3() {
         INT p1;
 	REG STRING	a;
 	STRING	p2;
@@ -141,7 +141,7 @@ e3() {
 	bfailed(btest, badop, p2);
 }
 
-tio(a, f)
+INT tio(a, f)
 	STRING	a;
 	INT f;
 {
@@ -151,7 +151,7 @@ tio(a, f)
 	FI
 }
 
-ftype(f,field)
+INT ftype(f,field)
 	STRING	f;
 	INT field;
 {
@@ -164,7 +164,7 @@ ftype(f,field)
 	FI
 }
 
-fsizep(f)
+INT fsizep(f)
 	STRING	f;
 {
         struct stat statb;

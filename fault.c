@@ -53,7 +53,7 @@ VOID	fault(sig)
 	FI
 }
 
-stdsigs()
+VOID stdsigs()
 {
 	signal(MEMF, (void (*)(int))fault);
 	ignsig(QUIT);
@@ -61,7 +61,7 @@ stdsigs()
 	getsig(ALARM);
 }
 
-ignsig(n)
+INT ignsig(n) INT n;
 {
 	REG INT		s, i;
 
@@ -74,7 +74,7 @@ ignsig(n)
 	return(s);
 }
 
-getsig(n)
+INT getsig(n) INT n;
 {
 	REG INT		i;
 
@@ -83,7 +83,7 @@ getsig(n)
 	FI
 }
 
-oldsigs()
+VOID oldsigs()
 {
 	REG INT		i;
 	REG STRING	t;
@@ -100,7 +100,7 @@ oldsigs()
 	trapnote=0;
 }
 
-clrsig(i)
+VOID clrsig(i)
 	INT		i;
 {
 	free(trapcom[i]); trapcom[i]=0;
@@ -113,7 +113,7 @@ clrsig(i)
 	FI
 }
 
-chktrap()
+VOID chktrap()
 {
 	/* check for traps */
 	REG INT		i=MAXTRAP;

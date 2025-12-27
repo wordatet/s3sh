@@ -6,3 +6,4 @@ stress.sh
 .gemini/
 .agent/
 alloc_trace.txt
+build_*.log

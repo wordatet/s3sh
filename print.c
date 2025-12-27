@@ -14,15 +14,15 @@ CHAR		numbuf[6];
 
 /* printing and io conversion */
 
-newline()
+VOID newline()
 {	prc(NL);
 }
 
-blank()
+VOID blank()
 {	prc(SP);
 }
 
-prp()
+VOID prp()
 {
 	IF (flags&prompt)==0 ANDF cmdadr
 	THEN	prs(cmdadr); prs(colon);
@@ -35,7 +35,7 @@ VOID	prs(as)
 	REG STRING	s;
 
 	IF s=as
-	THEN	write(output,s,length(s)-1);
+	THEN	if (write(output,s,length(s)-1) == -1) { /* ignore */ }
 	FI
 }
 
@@ -43,11 +43,11 @@ VOID	prc(c)
 	CHAR		c;
 {
 	IF c
-	THEN	write(output,&c,1);
+	THEN	if (write(output,&c,1) == -1) { /* ignore */ }
 	FI
 }
 
-prt(t)
+VOID prt(t)
 	L_INT		t;
 {
 	REG INT	hr, min, sec;
@@ -62,13 +62,13 @@ prt(t)
 	prn(sec); prc('s');
 }
 
-prn(n)
+VOID prn(n)
 	INT		n;
 {
 	itos(n); prs(numbuf);
 }
 
-itos(n)
+VOID itos(n) INT n;
 {
 	REG char *abuf; REG POS a, i; INT pr, d;
 	abuf=numbuf; pr=FALSE; a=n;
@@ -80,8 +80,7 @@ itos(n)
 	*abuf++=0;
 }
 
-stoi(icp)
-STRING	icp;
+INT stoi(icp) STRING icp;
 {
 	REG CHAR	*cp = icp;
 	REG INT		r = 0;

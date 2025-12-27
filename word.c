@@ -16,7 +16,7 @@
 
 LOCAL INT	readb();
 
-word()
+INT word()
 {
 	REG CHAR	c, d, c1;
 	REG CHAR	*argp=locstak()+BYTESPERWORD;
@@ -83,7 +83,7 @@ word()
 	return(wdval);
 }
 
-nextc(quote)
+INT nextc(quote)
 	CHAR		quote;
 {
 	REG CHAR	c, d;
@@ -98,7 +98,7 @@ nextc(quote)
 	return(d);
 }
 
-readc()
+INT readc()
 {
 	REG CHAR	c;
 	REG INT		len;

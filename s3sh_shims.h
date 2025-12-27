@@ -1,3 +1,6 @@
+#ifndef _GNU_SOURCE
+#define _GNU_SOURCE
+#endif
 #ifndef S3SH_SHIMS_H
 #define S3SH_SHIMS_H
 
@@ -11,7 +14,10 @@
 #include <sys/wait.h>
 #include <setjmp.h>
 #include <stdint.h>
+#include <stdint.h>
 #include <errno.h>
+#include <fcntl.h>
+#include <sys/times.h>
 
 /* PDP-11 / V7/S3 era types often need mapping */
 #define LOCAL static

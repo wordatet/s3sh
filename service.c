@@ -182,7 +182,7 @@ STRING	execs(ap,t)
 LOCAL INT	pwlist[MAXP];
 LOCAL INT	pwc;
 
-postclr()
+VOID postclr()
 {
 	REG INT		*pw = pwlist;
 
@@ -278,7 +278,7 @@ VOID	await(i, bckg)
 
 BOOL		nosubst;
 
-trim(at)
+VOID trim(at)
 	STRING		at;
 {
 	REG STRING	p;

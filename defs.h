@@ -103,6 +103,7 @@ NAMPTR		lookup();
 INT		setname();
 VOID		setargs();
 DOLPTR		useargs();
+DOLPTR		freeargs();
 REAL		expr();
 STRING		catpath();
 STRING		getpath();
@@ -135,6 +136,77 @@ INT		any();
 #define max(a,b)	((a)>(b)?(a):(b))
 #define assert(x)	;
 
+/* Added prototypes for 64-bit safety and warning cleanup */
+VOID    newline();
+VOID    blank();
+VOID    prp();
+VOID    prt();
+VOID    prn();
+VOID    itos();
+INT     stoi();
+
+VOID    exitset();
+VOID    sigchk();
+VOID    failed();
+VOID    error();
+VOID    exitsh();
+VOID    done();
+VOID    rmtemp();
+
+VOID    initf();
+INT     estabf();
+VOID    push();
+INT     pop();
+VOID    chkpipe();
+INT     chkopen();
+INT     create();
+INT     tmpfil();
+VOID    copy();
+
+VOID    stdsigs();
+INT     ignsig();
+INT     getsig();
+VOID    oldsigs();
+VOID    clrsig();
+VOID    chktrap();
+
+INT execute();
+INT syslook();
+VOID setlist();
+VOID replace();
+VOID dfault();
+VOID assign();
+VOID chkpr();
+INT gmatch();
+INT nextc();
+INT readc();
+VOID makearg();
+VOID execa();
+INT getarg();
+VOID trim();
+VOID subst();
+VOID clearup();
+INT expand();
+VOID bfailed();
+INT pathopen();
+INT length();
+INT word();
+VOID chgquot();
+INT test();
+INT     execexp();
+VOID    builtin();
+VOID    initio(); 
+INT		options();
+VOID	assnum();
+INT		readvar();
+VOID	namscan();
+VOID	postclr();
+VOID	settmp();
+VOID	Ldup();
+VOID	tdystak();
+VOID	stakchk();
+INT		profil();
+
 /* temp files and io */
 UFD		output;
 INT		ioset;
@@ -160,18 +232,18 @@ ARGPTR		gchain;
 VOID		initstak();
 
 /* string constants */
-MSG		atline;
-MSG		readmsg;
-MSG		colon;
-MSG		minus;
-MSG		nullstr;
-MSG		sptbnl;
-MSG		unexpected;
-MSG		endoffile;
-MSG		synmsg;
+extern MSG		atline;
+extern MSG		readmsg;
+extern MSG		colon;
+extern MSG		minus;
+extern MSG		nullstr;
+extern MSG		sptbnl;
+extern MSG		unexpected;
+extern MSG		endoffile;
+extern MSG		synmsg;
 
 /* name tree and words */
-SYSTAB		reserved;
+extern SYSTAB reserved;
 INT		wdval;
 INT		wdnum;
 ARGPTR		wdarg;
@@ -179,10 +251,10 @@ INT		wdset;
 BOOL		reserv;
 
 /* prompting */
-MSG		stdprompt;
-MSG		supprompt;
-MSG		profile;
-MSG		sysprofile;
+extern MSG		stdprompt;
+extern MSG		supprompt;
+extern MSG		profile;
+extern MSG		sysprofile;
 
 /* built in names */
 NAMNOD		fngnod;
@@ -194,25 +266,25 @@ NAMNOD		ps1nod;
 NAMNOD		ps2nod;
 
 /* special names */
-MSG		flagadr;
+extern CHAR	flagadr[];
 STRING		exitadr;
 STRING		dolladr;
 STRING		pcsadr;
 STRING		pidadr;
 
-MSG		defpath;
+extern MSG		defpath;
 
 /* names always present */
-MSG		mailname;
-MSG		homename;
-MSG		pathname;
-MSG		fngname;
-MSG		ifsname;
-MSG		ps1name;
-MSG		ps2name;
+extern MSG		mailname;
+extern MSG		homename;
+extern MSG		pathname;
+extern MSG		fngname;
+extern MSG		ifsname;
+extern MSG		ps1name;
+extern MSG		ps2name;
 
 /* transput */
-CHAR		tmpout[];
+extern CHAR tmpout[];
 STRING		sh_tmpnam;
 INT		serial;
 #define		TMPNAM 7
@@ -221,7 +293,7 @@ S3_FILE		standin;
 #define eof	(standin->feof)
 INT		peekc;
 STRING		comdiv;
-MSG		devnull;
+extern MSG		devnull;
 
 /* flags */
 #define		noexec	01
@@ -266,15 +338,15 @@ POS	brkincr;
 
 VOID		fault();
 BOOL		trapnote;
-STRING		trapcom[];
-BOOL		trapflg[];
+extern STRING trapcom[];
+extern BOOL trapflg[];
 
 /* name tree and words */
 STRING		*environ;
-CHAR		numbuf[];
-MSG		export;
-MSG	duperr;
-MSG		readonly;
+extern CHAR numbuf[];
+extern MSG		export;
+extern MSG	duperr;
+extern MSG		readonly;
 
 /* execflgs */
 INT		exitval;
@@ -283,45 +355,45 @@ INT		loopcnt;
 INT		breakcnt;
 
 /* messages */
-MSG		mailmsg;
-MSG		coredump;
-MSG		badopt;
-MSG		badparam;
-MSG		unset;
-MSG		badsub;
-MSG		nospace;
-MSG		notfound;
-MSG		badtrap;
-MSG		baddir;
-MSG		badshift;
-MSG		illegal;
-MSG		restricted;
-MSG		execpmsg;
-MSG		notid;
-MSG		wtfailed;
-MSG		badcreate;
-MSG		nofork;
-MSG		noswap;
-MSG		piperr;
-MSG		badopen;
-MSG		badnum;
-MSG		arglist;
-MSG		txtbsy;
-MSG		toobig;
-MSG		badexec;
-MSG		badfile;
+extern MSG		mailmsg;
+extern MSG		coredump;
+extern MSG		badopt;
+extern MSG		badparam;
+extern MSG		unset;
+extern MSG		badsub;
+extern MSG		nospace;
+extern MSG		notfound;
+extern MSG		badtrap;
+extern MSG		baddir;
+extern MSG		badshift;
+extern MSG		illegal;
+extern MSG		restricted;
+extern MSG		execpmsg;
+extern MSG		notid;
+extern MSG		wtfailed;
+extern MSG		badcreate;
+extern MSG		nofork;
+extern MSG		noswap;
+extern MSG		piperr;
+extern MSG		badopen;
+extern MSG		badnum;
+extern MSG		arglist;
+extern MSG		txtbsy;
+extern MSG		toobig;
+extern MSG		badexec;
+extern MSG		badfile;
 
 /*	'builtin' error messages	*/
 
-MSG		btest;
-MSG		badop;
+extern MSG		btest;
+extern MSG		badop;
 
 /*	fork constant	*/
 #define FORKLIM 32
 /*	comment delimeter 	*/
 
 #define	COMCHAR	'#'
-address	end[];
+extern address end[];
 
 #include	"ctype.h"
 

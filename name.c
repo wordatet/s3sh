@@ -27,7 +27,7 @@ NAMPTR		namep = &mailnod;
 
 /* ========	variable and string handling	======== */
 
-syslook(w,syswds)
+INT syslook(w,syswds)
 	STRING		w;
 	SYSTAB		syswds;
 {
@@ -48,7 +48,7 @@ syslook(w,syswds)
 	return(0);
 }
 
-setlist(arg,xp)
+VOID setlist(arg,xp)
 	REG ARGPTR	arg;
 	INT		xp;
 {
@@ -108,14 +108,14 @@ INT	setname(argi, xp) /* does parameter assignments */
 	failed(argi,notid);
 }
 
-replace(a, v)
+VOID replace(a, v)
 	REG STRING	*a;
 	STRING		v;
 {
 	free(*a); *a=make(v);
 }
 
-dfault(n,v)
+VOID dfault(n,v)
 	NAMPTR		n;
 	STRING		v;
 {
@@ -124,7 +124,7 @@ dfault(n,v)
 	FI
 }
 
-assign(n,v)
+VOID assign(n,v)
 	NAMPTR		n;
 	STRING		v;
 {
@@ -184,7 +184,7 @@ INT	readvar(names)
 	return(rc);
 }
 
-assnum(p, i)
+VOID assnum(p, i)
 	STRING		*p;
 	INT		i;
 {
@@ -253,7 +253,7 @@ LOCAL BOOL	chkid(nam)
 }
 
 LOCAL VOID (*namfn)();
-namscan(fn)
+VOID namscan(fn)
 	VOID		(*fn)();
 {
 	namfn=fn;
