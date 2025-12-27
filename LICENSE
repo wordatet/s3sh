@@ -1,0 +1,30 @@
+S3SH PRESERVATIONIST LICENSE
+Version 1.3
+
+MODIFICATIONS COPYRIGHT & ATTRIBUTION:
+Copyright (c) 2025 Mario (@wordatet)
+Technical Credit & Attribution: Development achieved through human-AI collaboration with AI assistants Gemini (Google DeepMind) and Claude (Anthropic).
+
+1. PERMISSION: 
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Work"), to deal in the Work without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Work, and to permit persons to whom the Work is furnished to do so, subject to the following conditions below.
+
+2. RETENTION: 
+The above Copyright Notice and this permission notice must be included in all copies or substantial portions of the Work.
+
+3. ORIGINAL SOURCE ACKNOWLEDGMENT & COMPLIANCE: 
+This Work contains or is derived from the original AT&T System III UNIX source code, which may be subject to various historical licensing restrictions. This License applies ONLY to the modifications and porting logic provided by the Author. The Author does not grant, and does not have the authority to grant, any rights, licenses, or permissions to the original AT&T source code. All users must maintain compliance with the original owner's licensing terms for the underlying proprietary source code.
+
+4. GUIDANCE & HISTORICAL CONTEXT:
+For users seeking guidance on the legal status of "Ancient UNIX" source code, the following historical references and archives are provided. This information is for educational guidance only and does not constitute legal advice:
+- The Unix Heritage Society (TUHS): https://www.tuhs.org/
+- Historical Caldera/SCO "Ancient UNIX" License (2002): https://www.tuhs.org/Archive/Caldera-license.pdf
+- Unix-History Licensing Archive: https://github.com/v7unix/v7unix.github.io/tree/master/licenses
+
+5. PATENT GRANT: 
+Subject to the terms and conditions of this License, the Author hereby grants to You a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable patent license to any patent claims owned by the Author that are necessarily infringed by the modifications provided in this Work.
+
+6. NO ENDORSEMENT: 
+The name of the Author (Mario / @wordatet) and the names of the AI collaborators (Google DeepMind/Gemini, Anthropic/Claude) shall not be used to endorse or promote products derived from this software without specific prior written permission.
+
+7. DISCLAIMER (AS IS): 
+THE WORK IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

@@ -1,0 +1,8 @@
+*.o
+sh
+stress.sh
+:fix
+.DS_Store
+.gemini/
+.agent/
+alloc_trace.txt
