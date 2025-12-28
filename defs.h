@@ -2,6 +2,7 @@
 /*
  *	UNIX shell
  */
+#include <compat.h>
 
 #include "s3sh_shims.h"
 

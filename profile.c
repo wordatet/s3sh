@@ -2,6 +2,7 @@
 #ifndef _GNU_SOURCE
 #define _GNU_SOURCE
 #endif
+
 #include <unistd.h>
 #include <stdlib.h>
 #include <fcntl.h>
@@ -20,10 +21,14 @@ VOID monitor(lowpc, highpc, buf, bufsiz, cntsiz)
     static int *sbuf, ssiz;
 
     if (lowpc == 0) {
+#if defined(__GNUC__) && !defined(__PCC__)
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wnonnull"
+#endif
         profil((unsigned short *)0, 0, 0, 0);
+#if defined(__GNUC__) && !defined(__PCC__)
 #pragma GCC diagnostic pop
+#endif
         char template[] = "profXXXXXX";
         o = mkstemp(template);
         if (write(o, sbuf, ssiz<<1) == -1) { /* ignore */ }
